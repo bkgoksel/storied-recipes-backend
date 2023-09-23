@@ -72,8 +72,18 @@ def handler(event, context):
         }
 
     prompt = (
-        f"Write a story about the recipe named {recipe_name}. {last_sentences}"
+      f"Craft a lengthy, convoluted story about the recipe named {recipe_name}. "
+      f"If the following sentences are given, seamlessly continue the story from there: '{last_sentences}'. "
+      f"If not, start a fresh tale. Dive deep into the myriad details of how you discovered it, perhaps on a day with peculiar weather, "
+      f"like a time when the forecast was off. Embellish with over-the-top "
+      f"descriptions of your surroundings, such as unexpected colors in the sky or a passerby's curious attire. "
+      f"Recall the roller-coaster of emotions when you first tried preparing it, and perhaps a touch of drama from opinionated relatives, "
+      f"like a grandparent who believes in a unique method of preparation or a sibling with a strange substitution idea. "
+      f"Hint at some light-hearted family events related to this dish. Let your imagination roam, "
+      f"and craft this tale as if the recipe has woven itself intricately into your life's rich narrative. "
+      f"And remember, always leave the story open-ended, never drawing it to a full conclusion, as the tale should always have room to grow and expand."
     )
+
 
     response = openai.Completion.create(
       model="gpt-3.5-turbo",
