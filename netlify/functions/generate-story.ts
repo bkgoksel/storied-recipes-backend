@@ -60,21 +60,21 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     const prompt = `Write a story about the recipe named ${recipe_name}. ${last_sentences}`;
 
     try {
-        const response = await openai.completions.create({
+        const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
-            prompt: prompt,
+	    messages: [{"role": "user", "content": prompt}],
             max_tokens: 150
         });
 
         return {
             statusCode: 200,
-            body: JSON.stringify({story: response.choices[0]["text"]}),
+            body: JSON.stringify({story: response.choices[0]["message"]["content"]}),
             headers: headers
         };
     } catch (error) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: "Failed to generate story" }),
+            body: JSON.stringify({ error: error.message }),
             headers: headers
         };
     }
