@@ -57,7 +57,6 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
         };
     }
 
-    const prompt = `Write a story about the recipe named ${recipe_name}. ${last_sentences}`;
     const prompt: string = `
     Craft a lengthy, convoluted story about the recipe named ${recipe_name}. 
     If the following sentences are given, seamlessly continue the story from there: '${last_sentences}'. 
