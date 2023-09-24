@@ -21,13 +21,14 @@ export async function generate_story(request: HttpRequest, context: InvocationCo
     Craft a lengthy, convoluted story about the recipe named ${recipe_name}. 
     Dive deep into the myriad details of how you discovered it. Let your imagination roam, 
     and craft this tale as if the recipe has woven itself intricately into your life's rich narrative. 
+    Add some formatting and paragraph breaks.
     And remember, always leave the story open-ended, never drawing it to a full conclusion, as the tale should always have room to grow and expand.`;
 
     try {
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
 	    messages: [{"role": "system", "content": system_prompt}, {"role": "user", "content": last_sentences}],
-            max_tokens: 200
+            max_tokens: 400
         });
         context.log(`Response: ${response.choices[0]["message"]["content"]}`)
 
