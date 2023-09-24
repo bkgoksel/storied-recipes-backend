@@ -6,7 +6,7 @@ const openai = new OpenAI();
 export async function generate_story(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
     context.log(`Http function processed request for url "${request.url}"`);
 
-    const data = request.json()
+    const data = await request.json()
     const recipe_name = data['recipe_name'];
     const last_sentences = data['last_sentences'];
 
